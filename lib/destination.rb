@@ -1,5 +1,5 @@
 class Destination
-    attr_accessor :location, :dates, :price,:b_to_e
+    attr_accessor :location, :dates, :price,:b_to_e, :link
     @@all = []
 
     def initialize(attributes)
@@ -10,5 +10,20 @@ class Destination
     def self.all
         @@all
     end
+
+    def self.find_by_name(name)
+      all.find {|selection| selection.location = name}
+    end
+
+    def display_info
+      puts "#{location}"
+      puts "flying #{b_to_e}"
+      puts "from #{dates}"
+      puts "starting at #{price}"
+    end
+
+    # def self.find_or_create_by_name(name)
+    #   find_by_name(name) ||= Destination.new(name)
+    # end
 
 end
