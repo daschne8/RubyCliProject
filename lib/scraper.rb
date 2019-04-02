@@ -20,13 +20,19 @@ class Scraper
             :link => KAYAK+doc.css("div.Common-Personalization-Destination a.clickSection")[index]['href']
             }
             Destination.new(des_hash)
-            # binding.pry
-            # puts "done!"
         end
     end
 
-    def self.scrape_flights(html)
-        puts html
-    end
+    # def self.scrape_flights(link)
+    #     html = open(link)
+    #     doc = Nokogiri::HTML(html)
+    #     flights = []
+    #     doc.css("div.resultInner").each do
+    #       flight = {
+    #
+    #       }
+    #       Flight.new(flight)
+    #     end
+    # end
 
 end

@@ -50,7 +50,10 @@ class CLI
       user_input = gets.chomp
       case user_input
       when "d"
-        Scraper.scrape_flights(Destination.all[selection.to_i - 1].link)
+        puts "Section Coming Soon! until then please use the link #{Destination.all[selection.to_i - 1].link}"
+        puts ""
+        location_info(selection)
+        #Scraper.scrape_flights(Destination.all[selection.to_i - 1].link)
       when "r"
         destinations
       when "exit"
