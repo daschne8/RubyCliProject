@@ -20,8 +20,8 @@ class Scraper
         }
 
             Destination.new(des_hash)
-            binding.pry
-            puts "done!"
+            # binding.pry
+            # puts "done!"
 
         end
 
@@ -29,5 +29,5 @@ class Scraper
 
 end
 
-doc = Scraper.scrape
-puts "Done!"
+# doc = Scraper.scrape
+# puts "Done!"
