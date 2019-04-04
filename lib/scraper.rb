@@ -1,7 +1,3 @@
-require 'open-uri'
-require 'nokogiri'
-require 'pry'
-require_relative "../lib/destination.rb"
 class Scraper
     KAYAK = "https://www.kayak.com"
 
@@ -23,16 +19,24 @@ class Scraper
         end
     end
 
-    # def self.scrape_flights(link)
-    #     html = open(link)
-    #     doc = Nokogiri::HTML(html)
-    #     flights = []
-    #     doc.css("div.resultInner").each do
-    #       flight = {
-    #
-    #       }
-    #       Flight.new(flight)
-    #     end
-    # end
+    def self.scrape_flights(link,destination)
+      puts "please wait"
+      br = Watir::Browser.start("https://www.kayak.com/flights/WAS-FCO/2019-10-20/2019-10-31")
+      puts "Loading Page please wait . . ."
+      sleep 20
+      puts "Loaded!"
+      doc = Nokogiri::HTML(br.html)
+        flights = []
+        doc.css("div.inner-grid.keel-grid").each do |flight_section|
+          flight = {
+            :departure => flight_section.css("div.section.duration")[0].text.strip.gsub("\n"," "),
+            :arrival => flight_section.css("div.section.duration")[1].text.strip.gsub("\n"," "),
+            :price_range => "#{flight_section.css("span.price.option-text").text.split[0]} - #{flight_section.css("span.price.option-text").text.split[-1]}",
+            :airline => flight_section.css("div.section.times div.bottom").text[0,flight_section.css("div.section.times div.bottom").text.length/2],
+            :destination => destination
+          }
+          Flight.new(flight)
+        end
+    end
 
 end

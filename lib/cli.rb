@@ -1,7 +1,3 @@
-require_relative '../lib/destination.rb'
-require_relative '../lib/scraper.rb'
-
-
 class CLI
     attr_accessor
 
@@ -46,14 +42,15 @@ class CLI
 
     def location_info(selection)
       Destination.all[selection.to_i - 1].display_info
-      puts "\"d\" to display flights, \"r\" to return, \"exit\" to leave program"
+      puts "\"f\" for flights, \"r\" to return, \"exit\" to leave program"
       user_input = gets.chomp
       case user_input
-      when "d"
-        puts "Section Coming Soon! until then please use the link #{Destination.all[selection.to_i - 1].link}"
-        puts ""
-        location_info(selection)
-        #Scraper.scrape_flights(Destination.all[selection.to_i - 1].link)
+      when "f"
+        # puts "Section Coming Soon! until then please use the link #{Destination.all[selection.to_i - 1].link}"
+        # puts ""
+        # location_info(selection)
+        Scraper.scrape_flights(Destination.all[selection.to_i - 1].link,Destination.all[selection.to_i - 1])
+        destination_flights_listing(Destination.all[selection.to_i - 1])
       when "r"
         destinations
       when "exit"
@@ -62,6 +59,17 @@ class CLI
         puts "Sorry please make a valid selection"
         location_info(selection)
       end
+    end
+
+    def destination_flights_listing(destination)
+      Flight.all_by_destination(destination).each_with_index do |flight,index|
+        puts "#{index + 1}. #{flight.airline} flying to #{flight.destination.location}"
+        puts "   #{flight.departure}"
+        puts "   #{flight.arrival}"
+        puts "   #{flight.price_range}"
+      end
+      puts ""
+      destinations
     end
 
     def exit_program

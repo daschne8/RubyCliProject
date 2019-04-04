@@ -11,18 +11,9 @@ class Destination
         @@all
     end
 
-    #you all seem to like the methods but i haven't found a use for them
-    # def self.find_by_name(name)
-    #   all.find {|selection| selection.location = name}
-    # end
-    #
-    # def self.find_or_create_by_name(name)
-    #   find_by_name(name) ||= Destination.new(name)
-    # end
-    #
-    # def get_flights
-    #     @flights = Scraper.scrape_flights(self.link)
-    # end
+    def flights
+      Flight.all_by_destination(self)
+    end
 
     def display_info
       puts "#{location}"
@@ -30,7 +21,5 @@ class Destination
       puts "from #{dates}"
       puts "starting at #{price}"
     end
-
-
 
 end
