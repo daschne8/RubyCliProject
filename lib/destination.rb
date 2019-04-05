@@ -12,7 +12,7 @@ class Destination
     end
 
     def flights
-      Flight.all_by_destination(self)
+      Flight.all.select{|flight| flight.destination == self}
     end
 
     def display_info

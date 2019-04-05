@@ -28,8 +28,8 @@ class Flight
     all[rand(0..all.length)]
   end
 
-  def self.all_by_destination(destination)
-    all.select{|flight| flight.destination == destination}
-  end
+  # def self.all_by_destination(destination)
+  #   all.select{|flight| flight.destination == destination}
+  # end
 
 end

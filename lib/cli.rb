@@ -46,9 +46,6 @@ class CLI
       user_input = gets.chomp
       case user_input
       when "f"
-        # puts "Section Coming Soon! until then please use the link #{Destination.all[selection.to_i - 1].link}"
-        # puts ""
-        # location_info(selection)
         Scraper.scrape_flights(Destination.all[selection.to_i - 1].link,Destination.all[selection.to_i - 1])
         destination_flights_listing(Destination.all[selection.to_i - 1])
       when "r"
@@ -62,7 +59,7 @@ class CLI
     end
 
     def destination_flights_listing(destination)
-      Flight.all_by_destination(destination).each_with_index do |flight,index|
+      destination.flights.each_with_index do |flight,index|
         puts "#{index + 1}. #{flight.airline} flying to #{flight.destination.location}"
         puts "   #{flight.departure}"
         puts "   #{flight.arrival}"
