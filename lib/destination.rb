@@ -16,10 +16,11 @@ class Destination
     end
 
     def display_info
-      puts "#{location}"
-      puts "flying #{b_to_e}"
-      puts "from #{dates}"
-      puts "starting at #{price}"
+      return [@location,@b_to_e,@dates,@price]
+      # puts "#{location}"
+      # puts "flying #{b_to_e}"
+      # puts "from #{dates}"
+      # puts "starting at #{price}"
     end
 
 end

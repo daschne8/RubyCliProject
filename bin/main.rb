@@ -15,4 +15,4 @@ cli.run
 # Scraper.scrape_flights("www.kayak.com/f;ight/WAS-FCO/2019-10-20/2019-10-31",d)
 # fls = Flight.all_by_destination(d)
 
-binding.pry
+# binding.pry

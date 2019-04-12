@@ -41,7 +41,10 @@ class CLI
     end
 
     def location_info(selection)
-      Destination.all[selection.to_i - 1].display_info
+      display_info(selection)
+      # Destination.all[selection.to_i - 1].display_info
+
+
       puts "\"f\" for flights, \"r\" to return, \"exit\" to leave program"
       user_input = gets.chomp
       case user_input
@@ -67,6 +70,14 @@ class CLI
       end
       puts ""
       destinations
+    end
+
+    def display_info(selection)
+      di = Destination.all[selection.to_i - 1].display_info
+      puts "#{di[0]}"
+      puts "flying #{di[1]}"
+      puts "from #{di[2]}"
+      puts "starting at #{di[3]}"
     end
 
     def exit_program
